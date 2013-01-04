@@ -24,16 +24,16 @@ class FoursquareController < ApplicationController
     redirect_to @@auth_url
   end
 
-  def callback(code)
-    code = code
+  def callback
+    code = :params[:code]
     usr = new User(:fsq_token => JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0])
 
     redirect_to :controller => Car2goController, :action => :auth, :usr => usr if usr.save
   end
 
-  def push(checkin,secret)
-    if secret.eql?(@@push_secret)
-      checkin_obj = JSON.parse(checkin)
+  def push
+    if :params[:secret].eql?(@@push_secret)
+      checkin_obj = JSON.parse(:params[:checkin])
       id = checkin_obj['id']
       puts(id)
       HTTParty.post('https://api.foursquare.com/v2/checkins/'+checkin['id']+'/reply?text=DEBUG')
