@@ -32,9 +32,9 @@ class FoursquareController < ApplicationController
   end
 
   def push
-    puts :params
-    if :params[:secret].eql?(@@push_secret)
-      checkin_obj = JSON.parse(:params[:checkin])
+    puts params
+    if params[:secret].eql?(@@push_secret)
+      checkin_obj = JSON.parse(params[:checkin])
       id = checkin_obj['id']
       puts(id)
       HTTParty.post('https://api.foursquare.com/v2/checkins/'+checkin['id']+'/reply?text=DEBUG')
