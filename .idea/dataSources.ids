@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails Car2Square: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="bcb88709-a621-4371-b67f-bf75464c163c">
+    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:postgresql:Car2Square_production</jdbc-url>
+    <user-name>Car2Square</user-name>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+      </library>
+      <library>
+        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails Car2Square: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="80eef518-9585-49ec-be2d-69d00354f2f9">
+    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:postgresql:Car2Square_development</jdbc-url>
+    <user-name>Car2Square</user-name>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+      </library>
+      <library>
+        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails Car2Square: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="dc38ba69-94de-43de-bf9f-928742ca19b6">
+    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:postgresql:Car2Square_test</jdbc-url>
+    <user-name>Car2Square</user-name>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+      </library>
+      <library>
+        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>
