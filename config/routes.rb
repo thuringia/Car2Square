@@ -1,7 +1,7 @@
 Car2Square::Application.routes.draw do
 
-  match '4sq' => 'foursquare#callback'
-  match '4sq/push' => 'foursquare#push'
+  match 'foursquare/callback' => 'foursquare#callback'
+  match 'foursquare/push' => 'foursquare#push', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
