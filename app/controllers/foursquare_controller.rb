@@ -32,6 +32,7 @@ class FoursquareController < ApplicationController
   end
 
   def push
+    puts :params
     if :params[:secret].eql?(@@push_secret)
       checkin_obj = JSON.parse(:params[:checkin])
       id = checkin_obj['id']
