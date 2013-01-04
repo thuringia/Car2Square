@@ -26,7 +26,8 @@ class FoursquareController < ApplicationController
 
   def callback(code)
     code = code
-    JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0]
+    puts(JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0])
+    break
 
     usr = new User(:fsq_token => JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0])
 
