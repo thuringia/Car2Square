@@ -27,11 +27,10 @@ class FoursquareController < ApplicationController
   def callback(code)
     code = code
     puts(JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0])
-    break
 
-    usr = new User(:fsq_token => JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0])
+    #usr = new User(:fsq_token => JSON.parse(HTTParty.get(@@token_url + code)).values_at("access_token")[0])
 
-    redirect_to :controller => Car2goController, :action => :auth, :usr => usr if usr.save
+    #redirect_to :controller => Car2goController, :action => :auth, :usr => usr if usr.save
   end
 
   def push(checkin,secret)
