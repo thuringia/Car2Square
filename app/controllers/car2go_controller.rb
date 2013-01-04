@@ -6,6 +6,10 @@ class Car2goController < ApplicationController
 
   end
 
+  def endpoint
+    
+  end
+
   def has_c2g?(checkin)
     ret = false
     @@locations.each do |area|

@@ -23,7 +23,7 @@ class OauthConsumersController < ApplicationController
   # of your application depending on what service you're connecting to.
   def go_back
     if params[:id].eql?('car2go')
-      redirect_to :controller => 'Car2Go', :action =>
+      redirect_to :controller => 'Car2Go', :action => 'endpoint'
     end
   end
 
