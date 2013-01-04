@@ -6,13 +6,13 @@ class FoursquareController < ApplicationController
   @@push_secret = 'PNWOQIAM3P3E1WRQM0FV3TE5S0ZLR4AXISPOETXNZDKHPBON'
 
   @@redirect_url = "http://car2square.herokuapp.com/4sq"
-  @@auth_url = "https://foursquare.com/oauth2/authenticate?client_id="+@@client_id
-  +"&response_type=code&redirect_uri="+@@redirect_url
+  @@auth_url = "https://foursquare.com/oauth2/authenticate?client_id="+ @@client_id
+  + "&response_type=code&redirect_uri=" + @@redirect_url
 
-  @@token_url = "https://foursquare.com/oauth2/access_token?client_id="+@@client_id
-  +"&client_secret="+@@client_secret
-  +"&grant_type=authorization_code&redirect_uri="+@@redirect_url
-  +"&code="
+  @@token_url = "https://foursquare.com/oauth2/access_token?client_id="+ @@client_id
+  + "&client_secret=" + @@client_secret
+  + "&grant_type=authorization_code&redirect_uri=" + @@redirect_url
+  + "&code="
 
   def auth
     redirect_to @@auth_url
