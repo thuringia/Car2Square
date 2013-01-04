@@ -63,6 +63,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.2.4, ruby-1.9.2-p320) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v3.2.5, ruby-1.9.2-p320) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v2.2.2, ruby-1.9.2-p320) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.6, ruby-1.9.2-p320) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="therubyracer (v0.11.0, ruby-1.9.2-p320) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.16.0, ruby-1.9.2-p320) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.3, ruby-1.9.2-p320) [gem]" level="application" />

@@ -2,7 +2,9 @@ class Car2goController < ApplicationController
   @@locations=['amsterdam','austin','berlin','birmingham','calgary','dusseldorf','hamburg','cologne','london','miami',
   'portland','san diego', 'seattle', 'stuttgart','toronto','ulm','vancouver', 'dc', 'vienna']
 
-  @@api_key = ""
+  def auth(usr)
+
+  end
 
   def has_c2g?(checkin)
     ret = false
