@@ -1,8 +1,8 @@
-class Car2Square < Sinatra::Base
-  require 'sinatra'
-  require 'httparty'
-  require 'multi_json'
+require 'sinatra'
+require 'httparty'
+require 'multi_json'
 
+class App < Sinatra::Base
   use Rack::SSL
 
 #Foursquare API Data
