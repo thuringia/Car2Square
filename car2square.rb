@@ -1,4 +1,4 @@
-class App < Sinatra::Base
+class Car2Square < Sinatra::Base
   require 'sinatra'
   require 'httparty'
   require 'multi_json'
