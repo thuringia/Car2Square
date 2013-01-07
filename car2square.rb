@@ -2,6 +2,8 @@ require 'sinatra'
 require 'httparty'
 require 'multi_json'
 
+use Rack::SSL
+
 #Foursquare API Data
 client_id = "OMN4ZDLH4MUKFLAZ2FFDQ2M2ANQSIQPR2SAOMRF23QZNYSVE"
 client_secret = "GMKLL4DICI0EBDFZFZ1Z0H4B2TOWCNMXWEBIFLXZFHGIMC50"
@@ -39,7 +41,7 @@ get '/foursquare/callback/:code' do
   fsq_token = JSON.parse(HTTParty.get(@@token_url + code)).values_at('access_token')[0]
 end
 
-post '/foursquare/push/' do
+post '/foursquare/push' do
   puts request.body
 
   if params[:secret].eql?(push_secret)
