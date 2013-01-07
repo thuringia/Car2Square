@@ -4,7 +4,13 @@ require 'json'
 require 'rack/ssl'
 
 class App < Sinatra::Base
+
+#Configuration
   use Rack::SSL
+
+  configure :production, :development do
+    enable :logging
+  end
 
 #Foursquare API Data
   client_id = "OMN4ZDLH4MUKFLAZ2FFDQ2M2ANQSIQPR2SAOMRF23QZNYSVE"
@@ -49,7 +55,7 @@ class App < Sinatra::Base
     if params[:secret].eql?(push_secret)
       checkin_obj = JSON.parse(params[:checkin])
       id = checkin_obj['id']
-      puts(id)
+      logger.info id
       HTTParty.post('https://api.foursquare.com/v2/checkins/'+id+'/reply?text=DEBUG')
     end
   end
