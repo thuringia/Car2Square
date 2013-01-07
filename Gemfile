@@ -6,10 +6,7 @@ gem 'sinatra'
 gem 'rack-ssl'
 
 # HTTParty
+gem 'json'
 gem 'multi_json'
 gem 'multi_xml'
 gem 'httparty'
-
-# Gems for OAuth
-gem 'oauth'
-gem "oauth-plugin", "~> 0.4.0"
