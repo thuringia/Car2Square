@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 
+#SSL
+gem 'rack-ssl'
+
 # HTTParty
 gem 'multi_json'
 gem 'multi_xml'
