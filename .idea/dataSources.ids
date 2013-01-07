@@ -12,29 +12,27 @@
       </library>
     </libraries>
   </data-source>
-  <data-source source="LOCAL" name="Rails Car2Square: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="80eef518-9585-49ec-be2d-69d00354f2f9">
-    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-    <jdbc-url>jdbc:postgresql:Car2Square_development</jdbc-url>
-    <user-name>Car2Square</user-name>
+  <data-source source="LOCAL" name="Rails Car2Square: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="e123f841-50b8-4f99-9810-efa58852ffbb">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:/home/robert/Developer/Car2Square/Car2Square_development</jdbc-url>
     <libraries>
       <library>
-        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license.txt</url>
       </library>
       <library>
-        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
+        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar!/</url>
       </library>
     </libraries>
   </data-source>
-  <data-source source="LOCAL" name="Rails Car2Square: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="dc38ba69-94de-43de-bf9f-928742ca19b6">
-    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-    <jdbc-url>jdbc:postgresql:Car2Square_test</jdbc-url>
-    <user-name>Car2Square</user-name>
+  <data-source source="LOCAL" name="Rails Car2Square: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="742aa2e8-ba47-48b6-b98a-cce44cea56fd">
+    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+    <jdbc-url>jdbc:sqlite:/home/robert/Developer/Car2Square/Car2Square_test</jdbc-url>
     <libraries>
       <library>
-        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license.txt</url>
       </library>
       <library>
-        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
+        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar!/</url>
       </library>
     </libraries>
   </data-source>
