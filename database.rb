@@ -3,7 +3,7 @@ require 'sinatra/sequel'
 
 # Establish the database connection; or, omit this and use the DATABASE_URL
 # environment variable as the connection string:
-set :database, Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+set :database, ENV['DATABASE_URL']
 
 "
 # At this point, you can access the Sequel Database object using the
