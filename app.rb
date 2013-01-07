@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'httparty'
 require 'multi_json'
+require 'rack/ssl'
 
 class App < Sinatra::Base
   use Rack::SSL
