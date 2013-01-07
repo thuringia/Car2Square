@@ -56,9 +56,10 @@ class App < Sinatra::Base
       checkin_obj = JSON.parse(params[:checkin])
       id = checkin_obj['id'].to_s
       logger.info id
-      url = 'https://api.foursquare.com/v2/checkins/'+id+'/reply?text=DEBUG'
-      logger.info url
-      HTTParty.post(url)
+      url = 'https://api.foursquare.com/v2/checkins/'+id+'/reply'
+      options = {:body => {:text => 'DEBUG'}}
+      response = HTTParty.post(url, options)
+      logger.info response
     end
   end
 end
