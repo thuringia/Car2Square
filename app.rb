@@ -2,6 +2,7 @@ require 'sinatra'
 require 'httparty'
 require 'json'
 require 'rack/ssl'
+require './database'
 
 class App < Sinatra::Base
 

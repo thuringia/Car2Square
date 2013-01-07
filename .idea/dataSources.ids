@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
   <data-source source="LOCAL" name="Rails Car2Square: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="bcb88709-a621-4371-b67f-bf75464c163c">
     <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-    <jdbc-url>jdbc:postgresql:Car2Square_production</jdbc-url>
-    <user-name>Car2Square</user-name>
+    <jdbc-url>jdbc:postgresql://ENV['DATABASE_URL']/database</jdbc-url>
+    <user-name>username</user-name>
     <libraries>
       <library>
         <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
       </library>
       <library>
         <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar!/</url>
-      </library>
-    </libraries>
-  </data-source>
-  <data-source source="LOCAL" name="Rails Car2Square: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="e123f841-50b8-4f99-9810-efa58852ffbb">
-    <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-    <jdbc-url>jdbc:sqlite:/home/robert/Developer/Car2Square/Car2Square_development</jdbc-url>
-    <libraries>
-      <library>
-        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/xerial-sqlite-license.txt</url>
-      </library>
-      <library>
-        <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar!/</url>
       </library>
     </libraries>
   </data-source>
@@ -33,6 +21,20 @@
       </library>
       <library>
         <url>jar://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails Car2Square: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="210474b3-33bb-404e-991b-1f367fd9a2b1">
+    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:postgresql://127.0.0.1/sinatra_app_development</jdbc-url>
+    <user-name>sinatra_app</user-name>
+    <user-password>dfd9dfc3dfc4dfcbdfdedfd8dfcbdff5dfcbdfdadfda</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-driver-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/.IntelliJIdea12/config/jdbc-drivers/postgresql-9.1-901.jdbc3.jar</url>
       </library>
     </libraries>
   </data-source>
