@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'httparty'
 require 'multi_json'
+require 'rack-ssl'
 
 use Rack::SSL
 
