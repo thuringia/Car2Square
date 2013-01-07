@@ -39,7 +39,9 @@ get '/foursquare/callback/:code' do
   fsq_token = JSON.parse(HTTParty.get(@@token_url + code)).values_at('access_token')[0]
 end
 
-post '/foursquare/push/:checkin,:secret' do
+post '/foursquare/push/' do
+  puts request.body
+
   if params[:secret].eql?(push_secret)
     checkin_obj = JSON.parse(params[:checkin])
     id = checkin_obj['id']
