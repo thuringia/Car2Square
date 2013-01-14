@@ -9,6 +9,9 @@ class App < Sinatra::Base
 #Configuration
   use Rack::SSL
 
+  set :haml, :format => :html5
+  enable :sessions
+
   configure :production, :development do
     enable :logging
   end
@@ -34,10 +37,10 @@ class App < Sinatra::Base
   token_url.concat(redirect_url)
   token_url.concat("&code=")
 
-#Car2Go API data
+  #Car2Go API data
 
 
-#Car2Go locations
+  #Car2Go locations
   locations=['amsterdam', 'austin', 'berlin', 'birmingham', 'calgary', 'dusseldorf', 'hamburg', 'cologne', 'london', 'miami',
              'portland', 'san diego', 'seattle', 'stuttgart', 'toronto', 'ulm', 'vancouver', 'dc', 'vienna']
 
@@ -45,9 +48,19 @@ class App < Sinatra::Base
     redirect to(auth_url)
   end
 
-  get '/foursquare/callback/:code' do
-    code = params[:code]
-    fsq_token = JSON.parse(HTTParty.get(@@token_url + code)).values_at('access_token')[0]
+  get '/foursquare/callback/' do
+    session[:code] = params[:code]
+    session[:fsq_token] = JSON.parse(HTTParty.get(token_url + code)).values_at('access_token')[0]
+
+    redirect to()
+  end
+
+  get '/users/new' do
+    haml :auth
+  end
+
+  post '/users' do
+    users = database[:users]
   end
 
   post '/foursquare/push' do
