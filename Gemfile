@@ -15,3 +15,7 @@ gem 'httparty'
 gem 'sequel'
 gem 'sinatra-sequel'
 gem 'pg'
+
+# Views
+gem 'haml'
+gem 'sass'

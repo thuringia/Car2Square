@@ -1,0 +1,13 @@
+!!! 5
+
+%html
+  %form{:action => "/users"}
+    .group
+      %label{:for => "user"} Username
+      %input{:type => "text", :name => "username", :id => "user"}
+
+    .group
+      %label{:for => "pass"} Password
+      %input{:type => "text", :name => "password", :id => "pass"}
+
+    %button{:type => "submit"}
