@@ -12,21 +12,19 @@ puts \"the foos table doesn't exist\" if !database.table_exists?('foos')
 
 # define database migrations. pending migrations are run at startup and
 # are guaranteed to run exactly once per database."
-migration "create user table" do
+
+migration "drop old users" do
+  database.drop_table(:users)
+end
+
+migration "create new users table" do
   database.create_table :users do
     primary_key :id
+    text        :f_id
     text        :username
     text        :f_token
     text        :c_token
     timestamp   :created, :null => false
-
-    index :username, :unique => true
-  end
-end
-
-migration "4sq uses hex" do
-  database.alter_table :users do
-    add_column :f_id, :text
   end
 end
 "
