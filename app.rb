@@ -4,6 +4,7 @@ require 'json'
 require 'rack/ssl'
 require './database'
 require 'foursquare/user'
+require 'car2go/locations'
 
 class App < Sinatra::Base
 
@@ -38,6 +39,9 @@ class App < Sinatra::Base
   token_url.concat(redirect_url)
   token_url.concat("&code=")
 
+  # have car2go locations ready
+  locations = Locations.new
+
   get '/foursquare/auth' do
     redirect to(auth_url)
   end
@@ -65,6 +69,9 @@ class App < Sinatra::Base
       checkin_obj = JSON.parse(params[:checkin])
       c_id = checkin_obj[:id].to_s
       u_id = checkin_obj[:user][:id].to_s
+      city = checkin_obj[:venue][:location][:city].to_s
+
+      return unless locations.available?(city)
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+c_id+'/reply'
