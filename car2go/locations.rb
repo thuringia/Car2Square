@@ -7,14 +7,14 @@ class Locations < Car2go
     json = JSON.parse(super.get('locations'))
     cities = []
     json[:location].each do |loc|
-      cities.push loc[:locationName].to_s
+      cities.push loc[:locationName].to_s.downcase!
     end
 
     @cities = cities
   end
 
   def available?(city)
-    false unless @cities.include?(city)
+    false unless @cities.include?(city.to_s.downcase!)
   end
 
   def near?
