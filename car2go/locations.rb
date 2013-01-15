@@ -1,4 +1,4 @@
-require 'car2go/car2go'
+require './car2go/car2go'
 require 'geokit'
 
 class Locations < Car2go

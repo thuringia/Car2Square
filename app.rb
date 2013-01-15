@@ -2,11 +2,11 @@ require 'sinatra'
 require 'httparty'
 require 'json'
 require 'rack/ssl'
-require 'database'
-require 'foursquare/user'
-require 'foursquare/checkin'
-require 'car2go/locations'
-require 'car2go/car'
+require './database'
+require './foursquare/user'
+require './foursquare/checkin'
+require './car2go/locations'
+require './car2go/car'
 
 class App < Sinatra::Base
 
