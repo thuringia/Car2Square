@@ -61,18 +61,21 @@ class App < Sinatra::Base
     user = FSUser.new(HTTParty.get(url), fsq_token)
     session[:f_id] = user.id
 
-
-
+    # redirect to Car2Go auth
     redirect to()
   end
 
+  ##
+  # Handle the foursquare pudh
   post '/foursquare/push' do
-    puts request.body
-
+    # check if the request is really from foursquare
     if params[:secret].eql?(push_secret)
+
+      # parse the checkin json and get the id
       checkin_obj = JSON.parse(params[:checkin])
-      id = checkin_obj['id'].to_s
-      logger.info id
+      id = checkin_obj[:id].to_s
+
+      # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+id+'/reply'
       options = {:body => {:text => 'DEBUG'}}
       response = HTTParty.post(url, options)
