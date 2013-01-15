@@ -7,6 +7,7 @@ class Locations < Car2go
   def initialize
     json = JSON.parse(Car2go.getRes('locations', ''))
     cities = []
+    logger.info json[:location]
     json[:location].each do |loc|
       cities.push loc[:locationName].to_s.downcase!
     end
