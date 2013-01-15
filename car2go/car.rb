@@ -18,6 +18,6 @@ class Car
   def self.free?(city)
     cars = JSON.parse(super.get('vehicles', "&loc=#{city}"))
 
-    (cars[:placemarks].empty?) ? return [] : return cars[:placemarks]
+    (cars[:placemarks].empty?) ? [] : cars[:placemarks]
   end
 end
