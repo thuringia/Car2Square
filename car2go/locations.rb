@@ -1,3 +1,4 @@
+require 'sinatra'
 require './car2go/car2go'
 require 'geokit'
 
