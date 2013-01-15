@@ -1,12 +1,23 @@
-class Car
-  attr_reader :address, :ll ,:name
+require 'geokit'
 
-  def initialize(json)
-    obj = JSON.parse(json)
+class Car
+  attr_reader :address, :ll ,:name, :distance
+
+  def initialize(obj)
     gps = obj[:coordinates]
 
     @address = obj[:address]
     @ll = [gps[0],gps[1]]
     @name = obj[:name]
+  end
+
+  def distance(from_ll)
+    @distance = Geokit::Mappable.distance_between(from_ll, @ll, :units => :kms)
+  end
+
+  def self.free?(city)
+    cars = JSON.parse(super.get('vehicles', "&loc=#{city}"))
+
+    (cars[:placemarks].empty?) ? return [] : return cars[:placemarks]
   end
 end

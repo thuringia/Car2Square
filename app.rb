@@ -6,6 +6,7 @@ require './database'
 require 'foursquare/user'
 require 'foursquare/checkin'
 require 'car2go/locations'
+require 'car2go/car'
 
 class App < Sinatra::Base
 
@@ -73,14 +74,31 @@ class App < Sinatra::Base
       return unless locations.available?(checkin.city)
 
       # check if there are cars available
+      vehicles = Car.free?(checkin.city)
+
+      return unless !vehicles.empty?
+
+      cars = []
+      vehicles.each do |v|
+        tmpCar = new Car(v)
+        tmpCar.distance(checkin ll)
+        cars.push(tmpCar)
+      end
+
+      cars.sort_by! {|a| a[:distance]}
+
+      return unless cars[0].distance < 0.5
+
+      user = database[:users => u_id]
+      msg = "Hey #{user[:username]}, #{cars[0].name} is #{cars[0].distance}km away from you at #{cars[0].address}"
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+c_id+'/reply'
       options = {
           :body => {
-              :text => 'DEBUG'},
+              :text => msg},
           :headers => {
-              "oauth-token" => database[:users => u_id][:f_token]
+              "oauth-token" => user[:f_token]
           }
       }
       response = HTTParty.post(url, options)
