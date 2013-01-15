@@ -4,6 +4,7 @@ require 'json'
 require 'rack/ssl'
 require './database'
 require 'foursquare/user'
+require 'foursquare/checkin'
 require 'car2go/locations'
 
 class App < Sinatra::Base
@@ -66,12 +67,9 @@ class App < Sinatra::Base
     if params[:secret].eql?(push_secret)
 
       # parse the checkin json and get the checkin_id and user_id
-      checkin_obj = JSON.parse(params[:checkin])
-      c_id = checkin_obj[:id].to_s
-      u_id = checkin_obj[:user][:id].to_s
-      city = checkin_obj[:venue][:location][:city].to_s
+      checkin = Checkin.new(params[:checkin])
 
-      return unless locations.available?(city)
+      return unless locations.available?(checkin.city)
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+c_id+'/reply'
