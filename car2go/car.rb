@@ -1,13 +1,12 @@
 class Car
-  attr_reader :address, :lat, :long ,:name
+  attr_reader :address, :ll ,:name
 
   def initialize(json)
     obj = JSON.parse(json)
     gps = obj[:coordinates]
 
     @address = obj[:address]
-    @lat = gps[0]
-    @long = gps[1]
+    @ll = [gps[0],gps[1]]
     @name = obj[:name]
   end
 end

@@ -69,7 +69,10 @@ class App < Sinatra::Base
       # parse the checkin json and get the checkin_id and user_id
       checkin = Checkin.new(params[:checkin])
 
+      # check if the check-in's city is in a C2G area
       return unless locations.available?(checkin.city)
+
+      # check if there are cars available
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+c_id+'/reply'

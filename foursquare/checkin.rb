@@ -1,5 +1,5 @@
 class Checkin
-  attr_reader :c_id, :u_id, :city, :lat, :long
+  attr_reader :c_id, :u_id, :city, :ll
 
   def initialize(json)
     checkin_obj = JSON.parse(json)
@@ -9,7 +9,6 @@ class Checkin
 
     venue_loc = checkin_obj[:venue][:location]
     @city = venue_loc[:city].to_s
-    @lat = venue_loc[:lat]
-    @long = venue_loc[:lng]
+    @ll = [venue_loc[:lat], venue_loc[:lng]]
   end
 end
