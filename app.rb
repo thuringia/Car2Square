@@ -64,6 +64,8 @@ class App < Sinatra::Base
   ##
   # Handle the foursquare push
   post '/foursquare/push' do
+    logger.info "push received"
+
     # check if the request is really from foursquare
     if params[:secret].eql?(push_secret)
 
@@ -71,12 +73,16 @@ class App < Sinatra::Base
       checkin = Checkin.new(params[:checkin])
 
       # check if the check-in's city is in a C2G area
-      return unless locations.available?(checkin.city)
+      return 200 unless locations.available?(checkin.city)
+
+      logger.info "check-in in C2G area"
 
       # check if there are cars available
       vehicles = Car.free?(checkin.city)
 
-      return unless !vehicles.empty?
+      return 200 unless !vehicles.empty?
+
+      logger.info 'cars available'
 
       cars = []
       vehicles.each do |v|
@@ -87,10 +93,12 @@ class App < Sinatra::Base
 
       cars.sort_by! {|a| a[:distance]}
 
-      return unless cars[0].distance < 0.5
+      logger.info "closest car #{cars[0].distance}"
+      return 200 unless cars[0].distance < 0.5
 
       user = database[:users => u_id]
       msg = "Hey #{user[:username]}, #{cars[0].name} is #{cars[0].distance}km away from you at #{cars[0].address}"
+      logger.info msg
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+c_id+'/reply'
