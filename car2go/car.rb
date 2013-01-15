@@ -16,7 +16,7 @@ class Car
   end
 
   def self.free?(city)
-    cars = JSON.parse(super.getRes('vehicles', "&loc=#{city}"))
+    cars = JSON.parse(Car2go.getRes('vehicles', "&loc=#{city}"))
 
     (cars[:placemarks].empty?) ? [] : cars[:placemarks]
   end
