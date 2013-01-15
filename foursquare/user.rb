@@ -1,4 +1,4 @@
-require 'database'
+require './database'
 
 class FSUser
   attr_reader :id, :name, :token
