@@ -53,7 +53,6 @@ class App < Sinatra::Base
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
     user = FSUser.new(HTTParty.get(url), fsq_token)
     user.safe
-    session[:f_id] = user.id
   end
 
   ##
@@ -62,17 +61,18 @@ class App < Sinatra::Base
     # check if the request is really from foursquare
     if params[:secret].eql?(push_secret)
 
-      # parse the checkin json and get the id
+      # parse the checkin json and get the checkin_id and user_id
       checkin_obj = JSON.parse(params[:checkin])
-      id = checkin_obj[:id].to_s
+      c_id = checkin_obj[:id].to_s
+      u_id = checkin_obj[:user][:id].to_s
 
       # build the url and request
-      url = 'https://api.foursquare.com/v2/checkins/'+id+'/reply'
+      url = 'https://api.foursquare.com/v2/checkins/'+c_id+'/reply'
       options = {
           :body => {
               :text => 'DEBUG'},
           :headers => {
-              "oauth-token" => database[:users => session[:f_id]][:f_token]
+              "oauth-token" => database[:users => u_id][:f_token]
           }
       }
       response = HTTParty.post(url, options)
