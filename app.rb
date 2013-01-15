@@ -38,13 +38,6 @@ class App < Sinatra::Base
   token_url.concat(redirect_url)
   token_url.concat("&code=")
 
-  #Car2Go API data
-
-
-  #Car2Go locations
-  locations=['amsterdam', 'austin', 'berlin', 'birmingham', 'calgary', 'dusseldorf', 'hamburg', 'cologne', 'london', 'miami',
-             'portland', 'san diego', 'seattle', 'stuttgart', 'toronto', 'ulm', 'vancouver', 'dc', 'vienna']
-
   get '/foursquare/auth' do
     redirect to(auth_url)
   end
@@ -59,10 +52,8 @@ class App < Sinatra::Base
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
     user = FSUser.new(HTTParty.get(url), fsq_token)
+    user.safe
     session[:f_id] = user.id
-
-    # redirect to Car2Go auth
-    redirect to()
   end
 
   ##
