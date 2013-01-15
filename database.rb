@@ -26,7 +26,7 @@ end
 
 migration "4sq uses hex" do
   database.alter_table :users do
-    add_column :f_id, :string
+    add_column :f_id, :text
   end
 end
 "
