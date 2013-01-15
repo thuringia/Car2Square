@@ -12,4 +12,12 @@ class Locations < Car2go
 
     @cities = cities
   end
+
+  def available?(city)
+    false unless @cities.include?(city)
+  end
+
+  def near?
+
+  end
 end
