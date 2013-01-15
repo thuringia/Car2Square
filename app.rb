@@ -66,7 +66,7 @@ class App < Sinatra::Base
   end
 
   ##
-  # Handle the foursquare pudh
+  # Handle the foursquare push
   post '/foursquare/push' do
     # check if the request is really from foursquare
     if params[:secret].eql?(push_secret)
