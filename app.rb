@@ -77,7 +77,13 @@ class App < Sinatra::Base
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+id+'/reply'
-      options = {:body => {:text => 'DEBUG'}}
+      options = {
+          :body => {
+              :text => 'DEBUG'},
+          :headers => {
+              "oauth-token" => database[:users => session[:f_id]][:f_token]
+          }
+      }
       response = HTTParty.post(url, options)
       logger.info response
     end
