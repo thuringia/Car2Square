@@ -23,6 +23,12 @@ migration "create user table" do
     index :username, :unique => true
   end
 end
+
+migration "4sq uses hex" do
+  database.alter_table :users do
+    add_column :f_id, :string
+  end
+end
 "
 # you can also alter tables
 migration \"everything's better with bling\" do

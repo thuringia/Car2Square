@@ -3,6 +3,7 @@ require 'httparty'
 require 'json'
 require 'rack/ssl'
 require './database'
+require 'foursquare/user'
 
 class App < Sinatra::Base
 
@@ -49,18 +50,20 @@ class App < Sinatra::Base
   end
 
   get '/foursquare/callback/' do
-    session[:code] = params[:code]
-    session[:fsq_token] = JSON.parse(HTTParty.get(token_url + code)).values_at('access_token')[0]
+    # store CODE so we can request the OAuth token
+    code = params[:code]
+
+    # get the OAuth token
+    fsq_token = JSON.parse(HTTParty.get(token_url + code)).values_at('access_token')[0]
+
+    # get user data
+    url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
+    user = FSUser.new(HTTParty.get(url), fsq_token)
+    session[:f_id] = user.id
+
+
 
     redirect to()
-  end
-
-  get '/users/new' do
-    haml :auth
-  end
-
-  post '/users' do
-    users = database[:users]
   end
 
   post '/foursquare/push' do
