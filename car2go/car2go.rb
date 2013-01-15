@@ -8,6 +8,6 @@ class Car2go
 
   def self.getRes(resource, params)
     response = HTTParty.get((@@base_uri + resource + @@req_params + params))
-    return response.body
+    return response
   end
 end
