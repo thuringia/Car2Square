@@ -5,7 +5,7 @@ class Locations < Car2go
   attr_reader :cities
 
   def initialize
-    json = JSON.parse(super.get('locations', ''))
+    json = JSON.parse(super.getRes('locations', ''))
     cities = []
     json[:location].each do |loc|
       cities.push loc[:locationName].to_s.downcase!
