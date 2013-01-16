@@ -48,7 +48,7 @@ class App < Sinatra::Base
     redirect to(auth_url)
   end
 
-  get '/foursquare/callback/' do
+  get '/foursquare/callback' do
     # store CODE so we can request the OAuth token
     code = params[:code]
 
