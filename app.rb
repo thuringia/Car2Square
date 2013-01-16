@@ -53,12 +53,15 @@ class App < Sinatra::Base
     code = params[:code]
 
     # get the OAuth token
-    fsq_token = JSON.parse(HTTParty.get(token_url + code)).values_at('access_token')[0]
+    fsq_token = JSON.parse(HTTParty.get(token_url + code).response_body)['access_token']
 
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
     user = FSUser.new(HTTParty.get(url), fsq_token)
     user.safe
+
+    #show a message
+    haml :callback
   end
 
   ##
