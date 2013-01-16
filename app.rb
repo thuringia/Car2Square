@@ -51,11 +51,16 @@ class App < Sinatra::Base
   get '/foursquare/callback' do
     # store CODE so we can request the OAuth token
     code = params[:code]
+    logger.info code
 
     # get the OAuth token
+    logger.info (token_url + code)
     response = HTTParty.get(token_url + code)
+    logger.info  response
     obj = JSON.parse(response)
+    logger.info obj
     fsq_token = response['access_token']
+    logger.info fsq_token
 
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
