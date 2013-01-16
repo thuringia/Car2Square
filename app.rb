@@ -53,7 +53,9 @@ class App < Sinatra::Base
     code = params[:code]
 
     # get the OAuth token
-    fsq_token = JSON.parse(HTTParty.get(token_url + code).response_body)['access_token']
+    response = HTTParty.get(token_url + code)
+    obj = JSON.parse(response)
+    fsq_token = response['access_token']
 
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
