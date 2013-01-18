@@ -123,4 +123,15 @@ class App < Sinatra::Base
       logger.info response
     end
   end
+
+  # temporary Code for DH project
+  post '/schufa' do
+    sleep(5000)
+    {'credit_score' => 95}
+  end
+
+  get '/schufa' do
+    sleep(5000)
+    {'credit_score' => 95}
+  end
 end
