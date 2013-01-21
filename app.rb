@@ -126,12 +126,16 @@ class App < Sinatra::Base
 
   # temporary Code for DH project
   post '/schufa' do
+    status 200
     sleep(5000)
-    {'credit_score' => 95}
+    content_type :json
+    {'credit_score' => 95}.to_json
   end
 
   get '/schufa' do
+    status 200
     sleep(5000)
-    {'credit_score' => 95}
+    content_type :json
+    {'credit_score' => 95}.to_json
   end
 end
