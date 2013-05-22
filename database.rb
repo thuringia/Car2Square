@@ -34,6 +34,16 @@ end
 migration "move to sequel model" do
   database.drop_table(:users)
 end
+
+migration "add fs_users table" do
+  database.create_table :fs_users do
+    primary_key :id
+    text        :f_id
+    text        :name
+    text        :f_token
+    text        :c_token
+  end
+end
 "
 # models just work ...
 class Foo < Sequel::Model
