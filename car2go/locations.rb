@@ -19,6 +19,6 @@ class Locations < Car2go
 
   def available?(city)
     p "C2G available: #{@cities.include?(city.to_s.downcase!)}"
-    false unless @cities.include?(city.to_s.downcase!)
+    @cities.include?(city.to_s.downcase!) ? true : false
   end
 end
