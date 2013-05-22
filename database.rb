@@ -3,8 +3,6 @@ require 'sinatra/sequel'
 
 Sequel::Model.plugin :timestamps
 
-FSUser.plugin :timestamps, :created=>:created_on, :updated=>:updated_on
-
 # Establish the database connection; or, omit this and use the DATABASE_URL
 # environment variable as the connection string:
 set :database, ENV['DATABASE_URL']

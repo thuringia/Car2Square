@@ -3,6 +3,8 @@ require './database'
 class FSUser < Sequel::Model
   attr_reader :id, :name, :token
 
+  FSUser.plugin :timestamps, :created=>:created_on, :updated=>:updated_on
+
   def initialize(json, token)
     obj = JSON.parse(json)
 
@@ -10,11 +12,4 @@ class FSUser < Sequel::Model
     @name = obj[:firstName]
     @token = token
   end
-
-  ##
-  # Persist the instance to the database
-  #def safe
-   # users = database[:users]
-   # users.insert[:username => @name, :f_id => @id, :f_token => @token]
-  #end
 end
