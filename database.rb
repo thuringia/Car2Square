@@ -3,6 +3,8 @@ require 'sinatra/sequel'
 
 Sequel::Model.plugin :timestamps
 
+FSUser.plugin :timestamps, :created=>:created_on, :updated=>:updated_on
+
 # Establish the database connection; or, omit this and use the DATABASE_URL
 # environment variable as the connection string:
 set :database, ENV['DATABASE_URL']
@@ -31,12 +33,8 @@ migration "create new users table" do
 end
 
 # you can also alter tables
-migration "modify created column, add updated column" do
-  database.alter_table :user do
-    drop_column :created
-    add_column :created=>:created_on
-    add_column :updated=>:updated_on
-  end
+migration "move to sequel model" do
+  database.drop_table(:users)
 end
 "
 # models just work ...

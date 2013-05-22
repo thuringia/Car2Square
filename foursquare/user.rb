@@ -1,6 +1,6 @@
 require './database'
 
-class FSUser
+class FSUser < Sequel::Model
   attr_reader :id, :name, :token
 
   def initialize(json, token)
@@ -13,8 +13,8 @@ class FSUser
 
   ##
   # Persist the instance to the database
-  def safe
-    users = database[:users]
-    users.insert[:username => @name, :f_id => @id, :f_token => @token]
-  end
+  #def safe
+   # users = database[:users]
+   # users.insert[:username => @name, :f_id => @id, :f_token => @token]
+  #end
 end
