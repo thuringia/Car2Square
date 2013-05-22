@@ -26,7 +26,7 @@ class App < Sinatra::Base
 
   push_secret = 'PNWOQIAM3P3E1WRQM0FV3TE5S0ZLR4AXISPOETXNZDKHPBON'
 
-  redirect_url = 'http://car2square.herokuapp.com/foursquare'
+  redirect_url = 'http://car2square.herokuapp.com/foursquare/callback'
 
   auth_url = 'https://foursquare.com/oauth2/authenticate?client_id='
   auth_url.concat(client_id)
@@ -56,7 +56,7 @@ class App < Sinatra::Base
     # get the OAuth token
     logger.info (token_url + code)
     response = HTTParty.get(token_url + code)
-    logger.info  response
+    logger.info  response.to_s
     obj = JSON.parse(response)
     logger.info obj
     fsq_token = response['access_token']
