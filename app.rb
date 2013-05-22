@@ -67,7 +67,12 @@ class App < Sinatra::Base
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
     user = FSUser.new()
-    user.init_data(HTTParty.get(url).body, fsq_token)
+
+    user_obj = JSON.parse(HTTParty.get(url).body)
+
+    user.f_id     = user_obj[:id]
+    user.name     = user_object[:firstName]
+    user.f_token  = fsq_token
 
     logger.info user
 
