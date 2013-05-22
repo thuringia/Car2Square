@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/sequel'
 
+Sequel::Model.plugin :timestamps
+
 # Establish the database connection; or, omit this and use the DATABASE_URL
 # environment variable as the connection string:
 set :database, ENV['DATABASE_URL']
@@ -27,15 +29,15 @@ migration "create new users table" do
     timestamp   :created, :null => false
   end
 end
-"
+
 # you can also alter tables
-migration \"everything's better with bling\" do
-  database.alter_table :foos do
-    drop_column :baz
-    add_column :bling, :float
+migration "modify created column, add updated column" do
+  database.alter_table :user do
+    drop_column :created
+    add_column :created=>:created_on, :updated=>:updated_on
   end
 end
-
+"
 # models just work ...
 class Foo < Sequel::Model
   many_to_one :bar

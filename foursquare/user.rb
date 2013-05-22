@@ -15,6 +15,6 @@ class FSUser
   # Persist the instance to the database
   def safe
     users = database[:users]
-    users.insert[:username => @name, :f_id => @id, :f_token => @token, :created => Time.now]
+    users.insert[:username => @name, :f_id => @id, :f_token => @token]
   end
 end
