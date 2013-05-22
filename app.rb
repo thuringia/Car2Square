@@ -13,9 +13,6 @@ class App < Sinatra::Base
 #Configuration
   use Rack::SSL
 
-  include HTTParty
-  debug_output $stderr
-
   set :haml, :format => :html5
   enable :sessions
 
@@ -58,10 +55,12 @@ class App < Sinatra::Base
 
     # get the OAuth token
     logger.info (token_url + code)
+
     response = HTTParty.get(token_url + code)
-    #logger.info  response.to_s
+
     obj = JSON.parse(response)
     logger.info obj
+
     fsq_token = response['access_token']
     logger.info fsq_token
 
