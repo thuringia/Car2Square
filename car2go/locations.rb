@@ -14,9 +14,11 @@ class Locations < Car2go
     end
 
     @cities = cities
+    logger.info "C2G cities: #{@cities}"
   end
 
   def available?(city)
+    logger.info "C2G available: #{@cities.include?(city.to_s.downcase!)}"
     false unless @cities.include?(city.to_s.downcase!)
   end
 end

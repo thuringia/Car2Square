@@ -41,9 +41,6 @@ class App < Sinatra::Base
   token_url.concat(redirect_url)
   token_url.concat('&code=')
 
-  # have car2go locations ready
-  locations = Locations.new
-
   get '/foursquare/auth' do
     redirect to(auth_url)
   end
@@ -62,7 +59,7 @@ class App < Sinatra::Base
     logger.info obj
 
     fsq_token = response['access_token']
-    logger.info fsq_token
+    logger.info "foursquare token: #{fsq_token}"
 
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
@@ -71,13 +68,12 @@ class App < Sinatra::Base
     user = FSUser.new
 
     user_obj = JSON.parse(HTTParty.get(url).body)
-    logger.info "user json: #{user_obj}"
 
     user.f_id     = user_obj['response']['user']['id']
     user.name     = user_obj['response']['user']['firstName']
     user.f_token  = fsq_token
 
-    logger.info "user data: #{user}"
+    logger.info "user data: #{user.values}"
 
     user.save
 
@@ -98,7 +94,7 @@ class App < Sinatra::Base
       logger.info checkin
 
       # check if the check-in's city is in a C2G area
-      return 200 unless locations.available?(checkin.city)
+      return 200 unless Locations.new.available?(checkin.city)
 
       logger.info "check-in in C2G area"
 
