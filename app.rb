@@ -66,7 +66,7 @@ class App < Sinatra::Base
 
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
-    user = FSUser.new(HTTParty.get(url), fsq_token)
+    user = FSUser.new(HTTParty.get(url).body, fsq_token)
     user.safe
 
     #show a message
@@ -124,6 +124,10 @@ class App < Sinatra::Base
       response = HTTParty.post(url, options)
       logger.info response
     end
+  end
+
+  get '/privacy' do
+    haml :privacy
   end
 
 end
