@@ -70,8 +70,8 @@ class App < Sinatra::Base
 
     user_obj = JSON.parse(HTTParty.get(url).body)
 
-    user.f_id     = user_obj[:id]
-    user.name     = user_obj[:firstName]
+    user.f_id     = user_obj['id']
+    user.name     = user_obj['firstName']
     user.f_token  = fsq_token
 
     logger.info user
