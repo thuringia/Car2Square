@@ -13,6 +13,7 @@ class App < Sinatra::Base
 #Configuration
   use Rack::SSL
 
+  include HTTParty
   debug_output $stderr
 
   set :haml, :format => :html5
