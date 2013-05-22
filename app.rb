@@ -66,7 +66,11 @@ class App < Sinatra::Base
 
     # get user data
     url = ("https://api.foursquare.com/v2/users/self/?oauth_token=" + fsq_token)
-    user = FSUser.new(HTTParty.get(url).body, fsq_token)
+    user = FSUser.new()
+    user.init_data(HTTParty.get(url).body, fsq_token)
+
+    logger.info user
+
     user.save
 
     #show a message

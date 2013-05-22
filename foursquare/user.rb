@@ -5,7 +5,7 @@ class FSUser < Sequel::Model
 
   FSUser.plugin :timestamps, :created=>:created_on, :updated=>:updated_on
 
-  def initialize(json, token)
+  def init_data(json, token)
     obj = JSON.parse(json)
 
     @id = obj[:id]
