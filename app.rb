@@ -58,7 +58,7 @@ class App < Sinatra::Base
 
     response = HTTParty.get(token_url + code)
 
-    obj = JSON.parse(response)
+    obj = JSON.parse(response.body)
     logger.info obj
 
     fsq_token = response['access_token']
