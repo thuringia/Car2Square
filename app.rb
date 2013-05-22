@@ -26,7 +26,7 @@ class App < Sinatra::Base
 
   push_secret = 'PNWOQIAM3P3E1WRQM0FV3TE5S0ZLR4AXISPOETXNZDKHPBON'
 
-  redirect_url = 'http://car2square.herokuapp.com/4sq'
+  redirect_url = 'http://car2square.herokuapp.com/foursquare'
 
   auth_url = 'https://foursquare.com/oauth2/authenticate?client_id='
   auth_url.concat(client_id)
