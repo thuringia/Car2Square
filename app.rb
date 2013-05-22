@@ -71,13 +71,13 @@ class App < Sinatra::Base
     user = FSUser.new
 
     user_obj = JSON.parse(HTTParty.get(url).body)
-    logger.info "user data: #{user_obj}"
+    logger.info "user json: #{user_obj}"
 
-    user.f_id     = user_obj['id']
-    user.name     = user_obj['firstName']
+    user.f_id     = user_obj['response']['user']['id']
+    user.name     = user_obj['response']['user']['firstName']
     user.f_token  = fsq_token
 
-    logger.info user
+    logger.info "user data: #{user}"
 
     user.save
 
