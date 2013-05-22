@@ -34,7 +34,8 @@ end
 migration "modify created column, add updated column" do
   database.alter_table :user do
     drop_column :created
-    add_column :created=>:created_on, :updated=>:updated_on
+    add_column :created=>:created_on
+    add_column :updated=>:updated_on
   end
 end
 "
