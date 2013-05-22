@@ -16,5 +16,8 @@ gem 'sequel'
 gem 'sinatra-sequel'
 gem 'pg'
 
+# Views
+gem 'haml'
+
 # Geo
 gem 'geokit'
