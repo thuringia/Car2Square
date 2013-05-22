@@ -95,7 +95,7 @@ class App < Sinatra::Base
 
       # check if the check-in's city is in a C2G area
       locations = Locations.new
-      return 200 unless locations.available?(checkin.city)
+      locations.available?(checkin.city) ? '' : return 200
 
       logger.info "check-in in C2G area"
 

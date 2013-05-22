@@ -13,10 +13,13 @@ class Car
 
   def distance(from_ll)
     @distance = Geokit::Mappable.distance_between(from_ll, @ll, :units => :kms)
+    p "distance: #{@distance}"
   end
 
   def self.free?(city)
     cars = JSON.parse(Car2go.getRes('vehicles', "&loc=#{city}"))
+
+    p "cars: #{cars}"
 
     (cars['placemarks'].empty?) ? [] : cars['placemarks']
   end
