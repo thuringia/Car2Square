@@ -71,7 +71,7 @@ class App < Sinatra::Base
     user_obj = JSON.parse(HTTParty.get(url).body)
 
     user.f_id     = user_obj[:id]
-    user.name     = user_object[:firstName]
+    user.name     = user_obj[:firstName]
     user.f_token  = fsq_token
 
     logger.info user
@@ -92,6 +92,7 @@ class App < Sinatra::Base
 
       # parse the checkin json and get the checkin_id and user_id
       checkin = Checkin.new(params[:checkin])
+      logger.info checkin
 
       # check if the check-in's city is in a C2G area
       return 200 unless locations.available?(checkin.city)
