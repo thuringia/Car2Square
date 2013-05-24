@@ -101,7 +101,7 @@ class App < Sinatra::Base
       logger.info Location.available?(checkin.ll)
 
       car2go_city = Location.available?(checkin.ll)
-      unless city.eql?('')
+      unless car2go_city.eql?('')
         return 200
       end
 
