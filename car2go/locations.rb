@@ -32,11 +32,13 @@ class Location < Car2go
     @@locations
   end
 
-  def available?(city)
-    @@location.each do |city|
-
+  def self.available?(ll)
+    @@locations.each do |city|
+      p "C2G available in #{city.name}: #{city.bounds.contains?(ll)}"
+      ret = false unless city.bounds.contains?(ll)
+      if ret break
+      end
     end
-    p "C2G available: #{}}"
-    @cities.include?(city.to_s.downcase!)
+    ret
   end
 end
