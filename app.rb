@@ -118,6 +118,7 @@ class App < Sinatra::Base
 
       vehicles.each do |v|
         v.distance = v.calculate_distance(checkin.ll)
+        logger.info "distance to #{v.name} = #{v.distance}km"
       end
 
       vehicles.sort_by! {|a| a[:distance]}

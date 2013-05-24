@@ -15,8 +15,7 @@ class Car < Car2go
   end
 
   def calculate_distance(from_ll)
-    @distance = Geokit::Mappable.distance_between(from_ll, @ll, :units => :kms)
-    p "distance: #{@distance}"
+    @distance = Geokit::LatLng.distance_between(from_ll, @ll, :units => :kms)
   end
 
   def self.load_cars(city)
