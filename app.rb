@@ -128,16 +128,15 @@ class App < Sinatra::Base
       user = FSUser[:f_id => checkin.u_id]
       logger.info user
 
-      msg = "Hey #{user.name}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehicles[0].address}"
+      msg = "Hey #{user.name}, #{vehicles[0].name} is #{vehicles[0].distance.round(3)}km away from you at #{vehicles[0].address}"
       logger.info msg
 
       # build the url and request
       url = 'https://api.foursquare.com/v2/checkins/'+checkin.c_id+'/reply'
       options = {
           :body => {
-              :text => msg},
-          :headers => {
-              "oauth-token" => user.f_token
+              :text => msg,
+              :oauth_token => user.f_token
           }
       }
       response = HTTParty.post(url, options)
