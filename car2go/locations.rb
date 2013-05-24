@@ -8,10 +8,10 @@ class Location < Car2go
   def initialize(name, ne, sw)
     @name = name
 
-    @bounds = Geokit::Bpunds.new(sw, ne)
+    @bounds = Geokit::Bounds.new(sw, ne)
   end
 
-  def self.load_loacations
+  def self.load_locations
     json = JSON.parse(Car2go.getRes('locations', ''))
 
     cities = []
