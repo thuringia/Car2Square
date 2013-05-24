@@ -41,6 +41,9 @@ class App < Sinatra::Base
   token_url.concat(redirect_url)
   token_url.concat('&code=')
 
+  # load the car2go locations on startup
+  Location.load_locations
+
   get '/foursquare/auth' do
     redirect to(auth_url)
   end
@@ -94,7 +97,8 @@ class App < Sinatra::Base
       logger.info checkin
 
       # check if the check-in's city is in a C2G area
-      Location.load_locations
+      logger.info Location.available?(checkin.ll)
+
       if !Location.available?(checkin.ll)
         return 200
       end
