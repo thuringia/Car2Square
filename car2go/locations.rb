@@ -36,9 +36,10 @@ class Location < Car2go
     @@locations.each do |city|
       p "C2G available in #{city.name}: #{city.bounds.contains?(ll)}"
       ret = false unless city.bounds.contains?(ll)
-      if ret break
+      if ret
+        return ret
       end
     end
-    ret
+    return false
   end
 end
