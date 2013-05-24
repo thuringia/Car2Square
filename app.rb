@@ -88,6 +88,7 @@ class App < Sinatra::Base
   # Handle the foursquare push
   post '/foursquare/push' do
     logger.info "push received"
+    status 200
 
     # check if the request is really from foursquare
     if params[:secret].eql?(push_secret)
@@ -99,35 +100,33 @@ class App < Sinatra::Base
       # check if the check-in's city is in a C2G area
       logger.info Location.available?(checkin.ll)
 
-      if !Location.available?(checkin.ll)
+      car2go_city = Location.available?(checkin.ll)
+      unless city.eql?('')
         return 200
       end
 
-      logger.info "check-in in C2G area"
+      logger.info 'check-in in C2G area'
 
       # check if there are cars available
-      vehicles = Car.free?(checkin.city)
+      vehicles = Car.load_cars(car2go_city)
 
-      unless !vehicles.empty?
+      unless vehicles.empty?
         return 200
       end
 
       logger.info 'cars available'
 
-      cars = []
       vehicles.each do |v|
-        tmpCar = new Car(v)
-        tmpCar.distance(checkin ll)
-        cars.push(tmpCar)
+        v.distance = v.distance(checkin.ll)
       end
 
-      cars.sort_by! {|a| a[:distance]}
+      vehicles.sort_by! {|a| a[:distance]}
 
-      logger.info "closest car #{cars[0].distance}"
-      return 200 unless cars[0].distance < 0.5
+      logger.info "closest car #{vehicles[0].distance}"
+      return 200 unless vehicles[0].distance < 0.5
 
       user = database[:users => u_id]
-      msg = "Hey #{user[:username]}, #{cars[0].name} is #{cars[0].distance}km away from you at #{cars[0].address}"
+      msg = "Hey #{user[:username]}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehivles[0].address}"
       logger.info msg
 
       # build the url and request

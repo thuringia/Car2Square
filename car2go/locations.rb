@@ -32,13 +32,11 @@ class Location < Car2go
   end
 
   def self.available?(ll)
-    ret = false
     @@locations.each do |city|
-      ret = city.bounds.contains?(ll)
-      if ret
-        return ret
+      if city.bounds.contains?(ll)
+        return city.name
       end
     end
-    return ret
+    return ''
   end
 end

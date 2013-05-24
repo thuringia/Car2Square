@@ -1,14 +1,15 @@
+require './car2go/car2go'
 require 'geokit'
+require 'json'
 
-class Car
+class Car < Car2go
   attr_reader :address, :ll ,:name, :distance
+  attr_writer :address, :ll ,:name, :distance
 
-  def initialize(obj)
-    gps = obj['coordinates']
-
-    @address = obj['address']
-    @ll = [gps[0],gps[1]]
-    @name = obj['name']
+  def initialize(name, address, ll)
+    @address = address
+    @ll = ll
+    @name = name
   end
 
   def distance(from_ll)
@@ -16,11 +17,15 @@ class Car
     p "distance: #{@distance}"
   end
 
-  def self.free?(city)
+  def self.load_cars(city)
     cars = JSON.parse(Car2go.getRes('vehicles', "&loc=#{city}"))
 
-    p "cars: #{cars}"
-
-    (cars['placemarks'].empty?) ? [] : cars['placemarks']
+    if cars['placemarks'].empty?
+      @@cars = []
+    else
+      cars['placemarks'].each do |c2g|
+        @@cars.push Car.new(c2g['name'], c2g['address'], [c2g['coordinates'][0], c2g['coordinates'][1]])
+      end
+    end
   end
 end
