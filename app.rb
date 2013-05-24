@@ -125,8 +125,8 @@ class App < Sinatra::Base
       logger.info "closest car #{vehicles[0].distance}"
       return 200 unless vehicles[0].distance < 0.5
 
-      user = database[:users => checkin.u_id]
-      msg = "Hey #{user[:username]}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehicles[0].address}"
+      user = FSUser[checkin.u_id]
+      msg = "Hey #{user.name}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehicles[0].address}"
       logger.info msg
 
       # build the url and request
