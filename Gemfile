@@ -21,6 +21,3 @@ gem 'haml'
 
 # Geo
 gem 'geokit'
-
-# travis ci
-gem 'rake'
