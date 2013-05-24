@@ -118,7 +118,6 @@ class App < Sinatra::Base
 
       vehicles.each do |v|
         v.distance = v.calculate_distance(checkin.ll)
-        logger.info "distance to #{v.name} = #{v.distance}km"
       end
 
       vehicles.sort_by! {|a| a.distance}
@@ -126,8 +125,8 @@ class App < Sinatra::Base
       logger.info "closest car #{vehicles[0].distance}"
       return 200 unless vehicles[0].distance < 0.5
 
-      user = database[:users => u_id]
-      msg = "Hey #{user[:username]}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehivles[0].address}"
+      user = database[:users => checkin.u_id]
+      msg = "Hey #{user[:username]}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehicles[0].address}"
       logger.info msg
 
       # build the url and request
