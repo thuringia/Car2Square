@@ -24,7 +24,7 @@ class Car < Car2go
 
     unless cars['placemarks'].empty?
       cars['placemarks'].each do |c2g|
-        @@cars.push Car.new(c2g['name'], c2g['address'], c2g['coordinates'][0], c2g['coordinates'][1])
+        @@cars.push Car.new(c2g['name'], c2g['address'], c2g['coordinates'][1], c2g['coordinates'][0])
       end
     end
     return @@cars
