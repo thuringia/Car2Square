@@ -136,6 +136,7 @@ class App < Sinatra::Base
       options = {
           :body => {
               :text => msg,
+              :CHECKIN_ID => checkin.c_id,
               :oauth_token => user.f_token
           }
       }
