@@ -1,5 +1,7 @@
+require 'geokit'
+
 class Checkin
-  attr_reader :c_id, :u_id, :city, :lat, :long
+  attr_reader :c_id, :u_id, :city, :lat, :long, :ll
 
   def initialize(json)
     checkin_obj = JSON.parse(json)
@@ -11,9 +13,10 @@ class Checkin
     @city = venue_loc['city'].to_s
     @lat = venue_loc['lat']
     @long = venue_loc['lng']
+    @ll = Geokit::LatLng.new(@lat, @long)
   end
 
   def ll
-    [@lat, @long]
+    return @ll
   end
 end

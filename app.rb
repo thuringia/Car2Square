@@ -121,7 +121,7 @@ class App < Sinatra::Base
         logger.info "distance to #{v.name} = #{v.distance}km"
       end
 
-      vehicles.sort_by! {|a| a[:distance]}
+      vehicles.sort_by! {|a| a.distance}
 
       logger.info "closest car #{vehicles[0].distance}"
       return 200 unless vehicles[0].distance < 0.5

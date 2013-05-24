@@ -8,9 +8,9 @@ class Car < Car2go
 
   @@cars = []
 
-  def initialize(name, address, ll)
+  def initialize(name, address, lat, long)
     @address = address
-    @ll = ll
+    @ll = Geokit::LatLng.new(lat, long)
     @name = name
   end
 
@@ -23,7 +23,7 @@ class Car < Car2go
 
     unless cars['placemarks'].empty?
       cars['placemarks'].each do |c2g|
-        @@cars.push Car.new(c2g['name'], c2g['address'], [c2g['coordinates'][0], c2g['coordinates'][1]])
+        @@cars.push Car.new(c2g['name'], c2g['address'], c2g['coordinates'][0], c2g['coordinates'][1])
       end
     end
     return @@cars
