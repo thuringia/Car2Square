@@ -101,7 +101,7 @@ class App < Sinatra::Base
       logger.info Location.available?(checkin.ll)
 
       car2go_city = Location.available?(checkin.ll)
-      unless car2go_city.eql?('')
+      if car2go_city.eql?('')
         return 200
       end
 
@@ -110,7 +110,7 @@ class App < Sinatra::Base
       # check if there are cars available
       vehicles = Car.load_cars(car2go_city)
 
-      unless vehicles.empty?
+      if vehicles.empty?
         return 200
       end
 
