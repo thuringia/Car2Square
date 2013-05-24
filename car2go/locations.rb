@@ -25,7 +25,6 @@ class Location < Car2go
     end
 
     @@locations = cities
-    p "C2G cities: #{cities}"
   end
 
   def self.locations
@@ -33,13 +32,13 @@ class Location < Car2go
   end
 
   def self.available?(ll)
+    ret = false
     @@locations.each do |city|
-      p "C2G available in #{city.name}: #{city.bounds.contains?(ll)}"
-      ret = false unless city.bounds.contains?(ll)
+      ret = city.bounds.contains?(ll)
       if ret
         return ret
       end
     end
-    return false
+    return ret
   end
 end
