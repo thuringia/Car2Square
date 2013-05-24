@@ -126,6 +126,8 @@ class App < Sinatra::Base
       return 200 unless vehicles[0].distance < 0.5
 
       user = FSUser[checkin.u_id]
+      logger.info user
+
       msg = "Hey #{user.name}, #{vehicles[0].name} is #{vehicles[0].distance}km away from you at #{vehicles[0].address}"
       logger.info msg
 
