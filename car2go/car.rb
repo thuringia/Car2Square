@@ -15,6 +15,7 @@ class Car < Car2go
   end
 
   def calculate_distance(from_ll)
+    p "car #{@name} from #{from_ll} to #{@ll}"
     @distance = Geokit::LatLng.distance_between(from_ll, @ll, :units => :kms)
   end
 
