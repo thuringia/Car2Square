@@ -21,3 +21,6 @@ gem 'haml'
 
 # Geo
 gem 'geokit'
+
+# Unicorn multithreaded HTTP server
+gem 'unicorn'
